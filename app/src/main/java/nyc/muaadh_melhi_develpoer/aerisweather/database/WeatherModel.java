@@ -1,21 +1,21 @@
-package nyc.muaadh_melhi_develpoer.aerisweather.database;
-
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
-
-import java.util.Date;
-
-/**
- * Created by C4Q on 2/4/18.
- */
-
-@Entity(tableName = "weather")
-public class WeatherModel {
-
-    @PrimaryKey(autoGenerate = true)
-    private int characterId;
-
+//package nyc.muaadh_melhi_develpoer.aerisweather.database;
+//
+//import android.arch.persistence.room.ColumnInfo;
+//import android.arch.persistence.room.Entity;
+//import android.arch.persistence.room.PrimaryKey;
+//
+//import java.util.Date;
+//
+///**
+// * Created by C4Q on 2/4/18.
+// */
+//
+//@Entity(tableName = "weather")
+//public class WeatherModel {
+//
+//    @PrimaryKey(autoGenerate = true)
+//    private int characterId;
+//
 //    @ColumnInfo(name = "download_date")
 //    private Date downloadDate;
 //
@@ -33,4 +33,4 @@ public class WeatherModel {
 //
 //    @ColumnInfo(name = "characters_url")
 //    private String charactersUrl;
-}
+//}
