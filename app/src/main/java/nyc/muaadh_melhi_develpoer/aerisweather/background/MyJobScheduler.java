@@ -20,7 +20,7 @@ public class MyJobScheduler {
     public static void start(Context context) {
 
         //1-The scheduler is given to you by the system using getSystemService.
-        JobScheduler jobScheduler = context.getSystemService(JobScheduler.class);//?
+        JobScheduler jobScheduler = (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE);//?
         buildRetrofitJob(context, jobScheduler);
     }
 
@@ -30,10 +30,12 @@ public class MyJobScheduler {
         // your job as well as any conditions you want to apply.
         JobInfo.Builder retrofitJob = new JobInfo
                 .Builder(RETROFIT_JOB_ID, new ComponentName(applicationContext, RetrofitJob.class)) //id and my Job
-               // .setPeriodic(TimeUnit.DAYS.toMillis(1 / 2))
-                .setOverrideDeadline(3000)
+                // .setPeriodic(TimeUnit.DAYS.toMillis(1 / 2))
+                .setOverrideDeadline(100)
                 .setPersisted(true); //when it reboot ?
-        jobScheduler.schedule(retrofitJob.build());
+        if (jobScheduler != null) {
+            jobScheduler.schedule(retrofitJob.build());
+        }
 
 
     }

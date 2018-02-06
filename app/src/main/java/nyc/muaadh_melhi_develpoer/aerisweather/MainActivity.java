@@ -12,9 +12,7 @@ import nyc.muaadh_melhi_develpoer.aerisweather.background.MyJobScheduler;
 import nyc.muaadh_melhi_develpoer.aerisweather.common.Common;
 import nyc.muaadh_melhi_develpoer.aerisweather.model.AerisResponse;
 import nyc.muaadh_melhi_develpoer.aerisweather.model.WeatherResponse;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+
 
 public class MainActivity extends AppCompatActivity {
 
