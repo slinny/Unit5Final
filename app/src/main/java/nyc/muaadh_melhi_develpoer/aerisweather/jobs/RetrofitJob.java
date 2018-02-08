@@ -29,7 +29,7 @@ public class RetrofitJob extends JobService {
          * Create Retorfit call
          */
         AerisService aerisService = Common.getForecast();
-        loadForecast(aerisService);
+        loadForecast(aerisService, params);
         Log.d(TAG, "onStartJob: ");
         return true;
     }
@@ -39,7 +39,7 @@ public class RetrofitJob extends JobService {
         return true;
     }
 
-    private void loadForecast(AerisService aerisService) {
+    private void loadForecast(AerisService aerisService, final JobParameters params) {
         double lat = 42.25;
         double lg = -95.25;
         String location = lat + "," + lg;
@@ -50,12 +50,14 @@ public class RetrofitJob extends JobService {
                         Log.d("Retrofit call", "~~~~~~~~~~~onResponse:~~~~~~~~~~~~~ ");
                         responseList = response.body().getResponse();
                         Log.d("~~~~~~~~~~~~~~~~~~~~~~~", responseList.get(0).getProfile().getTz());
+                        jobFinished(params, false);
                     }
 
                     @Override
                     public void onFailure(Call<WeatherResponse> call, Throwable t) {
                         Log.d("Retrofit call", "~~~~~~~~~~~onFailure:~~~~~~~~~~~~~ ");
                         t.printStackTrace();
+                        jobFinished(params, true);
 
                     }
                 });
