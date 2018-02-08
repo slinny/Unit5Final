@@ -1,30 +1,30 @@
 package nyc.muaadh_melhi_develpoer.aerisweather;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
+
+    GPSTracker gps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Location location = new Location();
-        location.getLatitude();
-        location.getLongitude();
-        Log.d("laittude", String.valueOf(location.getLatitude()));
-        Log.d("longtitude",String.valueOf(location.getLongitude()));
+        gps = new GPSTracker(MainActivity.this);
+
+        if(gps.canGetLocation()){
+
+            double latitude = gps.getLatitude();
+            double longitude = gps.getLongitude();
+            Log.d("latitude", String.valueOf(latitude));
+            Log.d("longtitude", String.valueOf(longitude));
+        }else{
+            gps.showSettingsAlert();
+        }
+
 
     }
-
-//    public void goToMapActivity(View view){
-//        Intent intent = new Intent(this, MapsActivity.class);
-//        startActivity(intent);
-//    }
-
-
 }
