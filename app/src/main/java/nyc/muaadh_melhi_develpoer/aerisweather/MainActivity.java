@@ -11,14 +11,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
-import java.util.ArrayList;
-import java.util.List;
-import nyc.muaadh_melhi_develpoer.aerisweather.Interface.AerisService;
+
 import nyc.muaadh_melhi_develpoer.aerisweather.background.MyJobScheduler;
-import nyc.muaadh_melhi_develpoer.aerisweather.common.Common;
-import nyc.muaadh_melhi_develpoer.aerisweather.model.AerisResponse;
-import nyc.muaadh_melhi_develpoer.aerisweather.model.WeatherResponse;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -29,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         if (isNetworkAvailable()) {
             MyJobScheduler.start(getApplicationContext());
         } else {
