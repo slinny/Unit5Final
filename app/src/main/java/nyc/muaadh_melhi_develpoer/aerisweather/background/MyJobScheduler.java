@@ -30,12 +30,13 @@ public class MyJobScheduler {
         // your job as well as any conditions you want to apply.
         JobInfo.Builder retrofitJob = new JobInfo
                 .Builder(RETROFIT_JOB_ID, new ComponentName(applicationContext, RetrofitJob.class)) //id and my Job
-                // .setPeriodic(TimeUnit.DAYS.toMillis(1 / 2))
+               // .setPeriodic(TimeUnit.DAYS.toMillis(1 / 2))
                 .setOverrideDeadline(100)
                 .setPersisted(true); //when it reboot ?
-        if (jobScheduler != null) {
-            jobScheduler.schedule(retrofitJob.build());
-        }
+        if(jobScheduler!=null){
+        jobScheduler.schedule(retrofitJob.build());}
+
+
 
 
     }
