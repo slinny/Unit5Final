@@ -2,6 +2,7 @@ package nyc.muaadh_melhi_develpoer.aerisweather;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -37,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
-
     // Check all conductivities whether available or not
     public boolean isNetworkAvailable() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

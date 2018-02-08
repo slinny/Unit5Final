@@ -2,11 +2,13 @@ package nyc.muaadh_melhi_develpoer.aerisweather.jobs;
 
 import android.app.job.JobParameters;
 import android.app.job.JobService;
+import android.content.Intent;
 import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import nyc.muaadh_melhi_develpoer.aerisweather.AerisNotification;
 import nyc.muaadh_melhi_develpoer.aerisweather.Interface.AerisService;
 import nyc.muaadh_melhi_develpoer.aerisweather.common.Common;
 import nyc.muaadh_melhi_develpoer.aerisweather.model.AerisResponse;
@@ -21,6 +23,7 @@ import retrofit2.Response;
 
 public class RetrofitJob extends JobService {
     private static final String TAG = RetrofitJob.class.getSimpleName();
+    private Intent intent;
     private List<AerisResponse> responseList = new ArrayList<>();
 
     @Override
@@ -30,6 +33,8 @@ public class RetrofitJob extends JobService {
          */
         AerisService aerisService = Common.getForecast();
         loadForecast(aerisService, params);
+         intent = new Intent(getApplicationContext(), AerisNotification.class);
+        startService(intent);
         Log.d(TAG, "onStartJob: ");
         return true;
     }
@@ -50,6 +55,7 @@ public class RetrofitJob extends JobService {
                         Log.d("Retrofit call", "~~~~~~~~~~~onResponse:~~~~~~~~~~~~~ ");
                         responseList = response.body().getResponse();
                         Log.d("~~~~~~~~~~~~~~~~~~~~~~~", responseList.get(0).getProfile().getTz());
+
                         jobFinished(params, false);
                     }
 
