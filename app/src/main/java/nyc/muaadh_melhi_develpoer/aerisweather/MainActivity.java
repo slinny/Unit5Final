@@ -3,6 +3,7 @@ package nyc.muaadh_melhi_develpoer.aerisweather;
 
 import android.arch.persistence.room.Room;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -12,6 +13,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.app.Activity;
+import android.graphics.drawable.AnimationDrawable;
+import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import java.util.List;
 
@@ -26,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private Snackbar snackbar;
     private WeatherDatabase db;
 
-
+    Toolbar img;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,8 +47,18 @@ public class MainActivity extends AppCompatActivity {
             snakBar();
 
         }
-    }
 
+        // Load the ImageView that will host the animation and
+        // set its background to our AnimationDrawable XML resource.
+        img =  (Toolbar) findViewById(R.id.tool_bar);
+        img.setBackgroundResource(R.drawable.weather_animation);
+
+        // Get the background, which has been compiled to an AnimationDrawable object.
+        AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+
+        // Start the animation (looped playback by default).
+        frameAnimation.start();
+    }
     // Check all conductivities whether available or not
     public boolean isNetworkAvailable() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

@@ -3,15 +3,15 @@ package nyc.muaadh_melhi_develpoer.aerisweather.jobs;
 import android.app.job.JobParameters;
 import android.app.job.JobService;
 import android.arch.persistence.room.Room;
+import android.content.Intent;
 import android.os.PersistableBundle;
 import android.util.Log;
-
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import nyc.muaadh_melhi_develpoer.aerisweather.GPSTracker;
+import nyc.muaadh_melhi_develpoer.aerisweather.AerisNotification;
 import nyc.muaadh_melhi_develpoer.aerisweather.Interface.AerisService;
 import nyc.muaadh_melhi_develpoer.aerisweather.MainActivity;
 import nyc.muaadh_melhi_develpoer.aerisweather.common.Common;
@@ -36,6 +36,7 @@ public class RetrofitJob extends JobService {
     GPSTracker gps;
     double latitude;
     double longitude;
+    private Intent intent;
 
     @Override
     public boolean onStartJob(JobParameters params) {
@@ -44,6 +45,8 @@ public class RetrofitJob extends JobService {
          */
         AerisService aerisService = Common.getForecast();
         loadForecast(aerisService, params);
+        intent = new Intent(getApplicationContext(), AerisNotification.class);
+        startService(intent);
         Log.d(TAG, "onStartJob: ");
         return true;
     }
@@ -78,9 +81,7 @@ public class RetrofitJob extends JobService {
                     public void onResponse(Call <WeatherResponse> call, Response <WeatherResponse> response) {
                         Log.d("Retrofit call", "~~~~~~~~~~~onResponse:~~~~~~~~~~~~~ ");
                         responseList = response.body().getResponse();
-                        insertData(responseList);
-//                        listener.insertData();
-                        Log.d("~~~~~~~~~~~~~~~~~~~~~~~", "size" + responseList.get(0).getPeriods().size());
+                        Log.d("~~~~~~~~~~~~~~~~~~~~~~~", responseList.get(0).getProfile().getTz());
                         jobFinished(params, false);
                     }
 
