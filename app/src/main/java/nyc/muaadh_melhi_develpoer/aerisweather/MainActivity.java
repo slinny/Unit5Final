@@ -1,6 +1,7 @@
 package nyc.muaadh_melhi_develpoer.aerisweather;
 
 
+import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import nyc.muaadh_melhi_develpoer.aerisweather.background.MyJobScheduler;
+import nyc.muaadh_melhi_develpoer.aerisweather.database.WeatherDatabase;
 
 
 public class MainActivity extends AppCompatActivity {

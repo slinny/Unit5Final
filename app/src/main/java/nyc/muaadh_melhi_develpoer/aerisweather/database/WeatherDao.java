@@ -18,21 +18,14 @@ import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
 @Dao
 public interface WeatherDao {
 
-    @Query("SELECT * FROM weatherModel")
+    @Query("SELECT * FROM weatherModel ORDER BY dateTimeISO")
     LiveData<List<WeatherModel>> getAll();
-
-    @Query("SELECT * FROM weatherModel WHERE tempF == :tempF")
-    LiveData<List<Character>> findWeather(int tempF);
-
 
     @Query("SELECT COUNT(*) from weatherModel")
     int countWeather();
 
     @Query("DELETE FROM weatherModel")
     void deleteAll();
-
-    @Insert(onConflict = REPLACE)
-    void insertAll(WeatherModel... weatherModels);
 
     @Delete
     void delete(WeatherModel weatherModel);
