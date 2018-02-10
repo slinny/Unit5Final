@@ -25,28 +25,21 @@
 
                 <TextView
                     android:id="@+id/sunday"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="" />
+                    android:text="max"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimaryDark"
+                    />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/monday"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="" />
+                    android:layout_weight="1"
+                    android:text="min"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimaryDark"/>
             </LinearLayout>
 
             <LinearLayout
@@ -57,16 +50,20 @@
 
                 <TextView
                     android:id="@+id/tuesday"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="" />
+                    android:text="humidity"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimaryDark"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="" />
+                    android:text="feels like"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimaryDark"/>
             </LinearLayout>
 
             <LinearLayout
@@ -77,75 +74,29 @@
 
                 <TextView
                     android:id="@+id/wednesday"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="" />
+                    android:text="here8"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimaryDark"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/wqednesday"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                    android:text="here99"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimaryDark"/>
 
                 <TextView
-                    android:id="@+id/thursday"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/friday"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/saturday"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="" />
+                    android:text="here7"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimaryDark"/>
             </LinearLayout>
 
         </LinearLayout>
