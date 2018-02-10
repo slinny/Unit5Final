@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 
 import java.util.Date;
@@ -18,6 +19,9 @@ import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
 @Dao
 public interface WeatherDao {
 
+    @Insert(onConflict = REPLACE)
+    void insertAll(WeatherModel... weatherModel);
+
     @Query("SELECT * FROM weatherModel ORDER BY dateTimeISO")
     LiveData<List<WeatherModel>> getAll();
 
@@ -29,4 +33,6 @@ public interface WeatherDao {
 
     @Delete
     void delete(WeatherModel weatherModel);
+
+
 }

@@ -13,12 +13,18 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.List;
+
 import nyc.muaadh_melhi_develpoer.aerisweather.background.MyJobScheduler;
 import nyc.muaadh_melhi_develpoer.aerisweather.database.WeatherDatabase;
+import nyc.muaadh_melhi_develpoer.aerisweather.database.WeatherModel;
+import nyc.muaadh_melhi_develpoer.aerisweather.model.AerisResponse;
+import nyc.muaadh_melhi_develpoer.aerisweather.utility.TimeFormat;
 
 
 public class MainActivity extends AppCompatActivity {
     private Snackbar snackbar;
+    private WeatherDatabase db;
 
 
     @Override
@@ -26,11 +32,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        db = Room.databaseBuilder(getApplicationContext(), WeatherDatabase.class, "WeatherDataBase")
+                .allowMainThreadQueries().build();
 
         if (isNetworkAvailable()) {
             MyJobScheduler.start(getApplicationContext());
         } else {
-            //use the data from the cache
             snakBar();
 
         }
@@ -64,6 +71,5 @@ public class MainActivity extends AppCompatActivity {
         snackbar.show();
 
     }
-
 
 }

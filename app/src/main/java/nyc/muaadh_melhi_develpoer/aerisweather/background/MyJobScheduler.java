@@ -4,9 +4,13 @@ import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.ComponentName;
 import android.content.Context;
+import android.os.PersistableBundle;
+
+import com.google.gson.Gson;
 
 import java.util.concurrent.TimeUnit;
 
+import nyc.muaadh_melhi_develpoer.aerisweather.MainActivity;
 import nyc.muaadh_melhi_develpoer.aerisweather.jobs.RetrofitJob;
 
 /**
@@ -25,6 +29,8 @@ public class MyJobScheduler {
     }
 
     private static void buildRetrofitJob(Context applicationContext, JobScheduler jobScheduler) {
+
+
         //TODO: schedule a retrofitJOB to the job scheduler.
         //2-Next, you need a JobInfo.Builder object which is where you denote a job id and the class which contains
         // your job as well as any conditions you want to apply.
@@ -33,11 +39,9 @@ public class MyJobScheduler {
                // .setPeriodic(TimeUnit.DAYS.toMillis(1 / 2))
                 .setOverrideDeadline(100)
                 .setPersisted(true); //when it reboot ?
+
         if(jobScheduler!=null){
         jobScheduler.schedule(retrofitJob.build());}
-
-
-
 
     }
 }

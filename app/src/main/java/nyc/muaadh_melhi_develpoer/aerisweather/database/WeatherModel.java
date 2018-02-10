@@ -3,8 +3,8 @@ package nyc.muaadh_melhi_develpoer.aerisweather.database;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
-
-import java.util.Date;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 /**
  * Created by C4Q on 2/4/18.
@@ -12,11 +12,8 @@ import java.util.Date;
 
 @Entity(tableName = "weatherModel")
 public class WeatherModel {
-
-//    @PrimaryKey(autoGenerate = true)
-//    private int id;
-
-    @ColumnInfo(name = "dateTimeISO")
+    @PrimaryKey
+    @NonNull
     private String dateTimeISO;
 
     @ColumnInfo(name = "_long")
@@ -37,7 +34,7 @@ public class WeatherModel {
     @ColumnInfo(name = "humidity")
     private int humidity;
 
-    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "tempF")
     private int tempF;
 
     @ColumnInfo(name = "windSpeedMPH")
@@ -51,10 +48,37 @@ public class WeatherModel {
 
     @ColumnInfo(name = "weather")
     private String weather;
+    @ColumnInfo(name = "tz")
+    private String tz;
 
-//    public int getId() {
-//        return id;
-//    }
+
+    public String getTz() {
+        return tz;
+    }
+
+    public void setTz(String tz) {
+        this.tz = tz;
+    }
+
+    public WeatherModel() {
+    }
+
+    public WeatherModel(String dateTimeISO, Double _long, Double lat, String weatherPrimary, int maxTempF, int minTempF, int humidity, int tempF, int windSpeedMPH, Long sunrise, Long sunset, String weather, String tz) {
+        this.dateTimeISO = dateTimeISO;
+        this._long = _long;
+        this.lat = lat;
+        this.weatherPrimary = weatherPrimary;
+        this.maxTempF = maxTempF;
+        this.minTempF = minTempF;
+        this.humidity = humidity;
+        this.tempF = tempF;
+        this.windSpeedMPH = windSpeedMPH;
+        this.sunrise = sunrise;
+        this.sunset = sunset;
+        this.weather = weather;
+        this.tz = tz;
+
+    }
 
     public String getDateTimeISO() {
         return dateTimeISO;
@@ -104,9 +128,6 @@ public class WeatherModel {
         return weather;
     }
 
-//    public int setId(int id) {
-//        this.id = id;
-//    }
 
     public void setDateTimeISO(String dateTimeISO) {
         this.dateTimeISO = dateTimeISO;
