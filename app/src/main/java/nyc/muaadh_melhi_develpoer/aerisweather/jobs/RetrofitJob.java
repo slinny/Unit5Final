@@ -2,12 +2,14 @@ package nyc.muaadh_melhi_develpoer.aerisweather.jobs;
 
 import android.app.job.JobParameters;
 import android.app.job.JobService;
+import android.content.Intent;
 import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import nyc.muaadh_melhi_develpoer.aerisweather.GPSTracker;
+import nyc.muaadh_melhi_develpoer.aerisweather.AerisNotification;
 import nyc.muaadh_melhi_develpoer.aerisweather.Interface.AerisService;
 import nyc.muaadh_melhi_develpoer.aerisweather.MainActivity;
 import nyc.muaadh_melhi_develpoer.aerisweather.common.Common;
@@ -24,10 +26,11 @@ import retrofit2.Retrofit;
 
 public class RetrofitJob extends JobService {
     private static final String TAG = RetrofitJob.class.getSimpleName();
-    private List <AerisResponse> responseList = new ArrayList <>();
+    private List<AerisResponse> responseList = new ArrayList<>();
     GPSTracker gps;
     double latitude;
     double longitude;
+    private Intent intent;
 
     @Override
     public boolean onStartJob(JobParameters params) {
@@ -36,6 +39,8 @@ public class RetrofitJob extends JobService {
          */
         AerisService aerisService = Common.getForecast();
         loadForecast(aerisService, params);
+        intent = new Intent(getApplicationContext(), AerisNotification.class);
+        startService(intent);
         Log.d(TAG, "onStartJob: ");
         return true;
     }
@@ -65,9 +70,9 @@ public class RetrofitJob extends JobService {
         double lg = longitude;
         String location = lat + "," + lg;
         aerisService.getWeatherResponse(location, Common.CLIENT_ID, Common.CLIENT_SECRET)
-                .enqueue(new Callback <WeatherResponse>() {
+                .enqueue(new Callback<WeatherResponse>() {
                     @Override
-                    public void onResponse(Call <WeatherResponse> call, Response <WeatherResponse> response) {
+                    public void onResponse(Call<WeatherResponse> call, Response<WeatherResponse> response) {
                         Log.d("Retrofit call", "~~~~~~~~~~~onResponse:~~~~~~~~~~~~~ ");
                         responseList = response.body().getResponse();
                         Log.d("~~~~~~~~~~~~~~~~~~~~~~~", responseList.get(0).getProfile().getTz());
@@ -75,7 +80,7 @@ public class RetrofitJob extends JobService {
                     }
 
                     @Override
-                    public void onFailure(Call <WeatherResponse> call, Throwable t) {
+                    public void onFailure(Call<WeatherResponse> call, Throwable t) {
                         Log.d("Retrofit call", "~~~~~~~~~~~onFailure:~~~~~~~~~~~~~ ");
                         t.printStackTrace();
                         jobFinished(params, true);
