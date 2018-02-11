@@ -2,14 +2,13 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
     <android.support.v4.widget.Space
         android:id="@+id/empty_space"
-        android:visibility="invisible"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:visibility="invisible" />
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -17,18 +16,16 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </android.support.v7.widget.RecyclerView>
-
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:layout_weight="1"
             android:orientation="vertical">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
 
 
             <LinearLayout
@@ -44,8 +41,7 @@
                     android:layout_weight="1"
                     android:text="max"
                     android:textAlignment="center"
-                    android:textColor="@color/colorPrimaryDark"
-                    />
+                    android:textColor="@color/colorPrimaryDark" />
 
                 <TextView
                     android:id="@+id/min"
@@ -54,7 +50,7 @@
                     android:layout_weight="1"
                     android:text="min"
                     android:textAlignment="center"
-                    android:textColor="@color/colorPrimaryDark"/>
+                    android:textColor="@color/colorPrimaryDark" />
             </LinearLayout>
 
             <LinearLayout
@@ -70,7 +66,7 @@
                     android:layout_weight="1"
                     android:text="humidity"
                     android:textAlignment="center"
-                    android:textColor="@color/colorPrimaryDark"/>
+                    android:textColor="@color/colorPrimaryDark" />
 
                 <TextView
                     android:id="@+id/feelslike"
@@ -79,7 +75,7 @@
                     android:layout_weight="1"
                     android:text="feels like"
                     android:textAlignment="center"
-                    android:textColor="@color/colorPrimaryDark"/>
+                    android:textColor="@color/colorPrimaryDark" />
             </LinearLayout>
 
             <LinearLayout
@@ -95,7 +91,7 @@
                     android:layout_weight="1"
                     android:text="here8"
                     android:textAlignment="center"
-                    android:textColor="@color/colorPrimaryDark"/>
+                    android:textColor="@color/colorPrimaryDark" />
 
                 <TextView
                     android:id="@+id/sunrise"
@@ -104,7 +100,7 @@
                     android:layout_weight="1"
                     android:text="here99"
                     android:textAlignment="center"
-                    android:textColor="@color/colorPrimaryDark"/>
+                    android:textColor="@color/colorPrimaryDark" />
 
                 <TextView
                     android:id="@+id/sunset"
@@ -113,20 +109,22 @@
                     android:layout_weight="1"
                     android:text="here7"
                     android:textAlignment="center"
-                    android:textColor="@color/colorPrimaryDark"/>
+                    android:textColor="@color/colorPrimaryDark" />
             </LinearLayout>
 
         </LinearLayout>
-</android.support.v4.widget.NestedScrollView>
+    </android.support.v4.widget.NestedScrollView>
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -137,20 +135,21 @@
                     android:id="@+id/location"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="30sp"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:textSize="30sp" />
+
                 <ImageView
                     android:id="@+id/weather"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/tempf"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1" />
 
             </LinearLayout>
         </android.support.v7.widget.Toolbar>
@@ -158,14 +157,12 @@
         <android.support.design.widget.TabLayout
             android:layout_width="match_parent"
             android:layout_height="4dp"
-            app:layout_scrollFlags="scroll|enterAlways"/>
+            app:layout_scrollFlags="scroll|enterAlways" />
 
         <include
             layout="@layout/toolbar"
-            android:layout_height="40dp"
             android:layout_width="match_parent"
-            >
-        </include>
+            android:layout_height="40dp"></include>
     </android.support.design.widget.AppBarLayout>
 
 

@@ -12,6 +12,7 @@ import java.util.List;
 
 import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
 
+
 /**
  * Created by C4Q on 2/4/18.
  */
@@ -23,7 +24,7 @@ public interface WeatherDao {
     void insertAll(WeatherModel... weatherModel);
 
     @Query("SELECT * FROM weatherModel ORDER BY dateTimeISO")
-    LiveData<List<WeatherModel>> getAll();
+    List<WeatherModel> getAll();
 
     @Query("SELECT COUNT(*) from weatherModel")
     int countWeather();

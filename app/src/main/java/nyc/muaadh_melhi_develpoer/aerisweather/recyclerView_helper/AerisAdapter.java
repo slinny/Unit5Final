@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nyc.muaadh_melhi_develpoer.aerisweather.R;
+import nyc.muaadh_melhi_develpoer.aerisweather.database.WeatherModel;
 import nyc.muaadh_melhi_develpoer.aerisweather.model.AerisResponse;
 
 /**
@@ -16,9 +17,9 @@ import nyc.muaadh_melhi_develpoer.aerisweather.model.AerisResponse;
  */
 
 public class AerisAdapter extends RecyclerView.Adapter<AerisViewHolder> {
-    List<AerisResponse> responseList = new ArrayList<>();
+    List<WeatherModel> responseList = new ArrayList<>();
 
-    public AerisAdapter(List<AerisResponse> responseList) {
+    public AerisAdapter(List<WeatherModel> responseList) {
         this.responseList = responseList;
     }
 
@@ -30,7 +31,9 @@ public class AerisAdapter extends RecyclerView.Adapter<AerisViewHolder> {
 
     @Override
     public void onBindViewHolder(AerisViewHolder holder, int position) {
-        AerisResponse aerisResponse = responseList.get(position);
+        WeatherModel weatherModel = responseList.get(position);
+        holder.onBind(weatherModel);
+
     }
 
     @Override

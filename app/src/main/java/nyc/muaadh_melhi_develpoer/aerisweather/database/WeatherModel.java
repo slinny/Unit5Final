@@ -50,7 +50,17 @@ public class WeatherModel {
     private String weather;
     @ColumnInfo(name = "tz")
     private String tz;
+    @ColumnInfo(name = "icon")
+    private String icon;
 
+    public String getIcon() {
+        return icon;
+    }
+
+    public WeatherModel setIcon(String icon) {
+        this.icon = icon;
+        return this;
+    }
 
     public String getTz() {
         return tz;
@@ -60,10 +70,8 @@ public class WeatherModel {
         this.tz = tz;
     }
 
-    public WeatherModel() {
-    }
 
-    public WeatherModel(String dateTimeISO, Double _long, Double lat, String weatherPrimary, int maxTempF, int minTempF, int humidity, int tempF, int windSpeedMPH, Long sunrise, Long sunset, String weather, String tz) {
+    public WeatherModel(String dateTimeISO, Double _long, Double lat, String weatherPrimary, int maxTempF, int minTempF, int humidity, int tempF, int windSpeedMPH, Long sunrise, Long sunset, String weather, String tz,String icon) {
         this.dateTimeISO = dateTimeISO;
         this._long = _long;
         this.lat = lat;
@@ -77,6 +85,7 @@ public class WeatherModel {
         this.sunset = sunset;
         this.weather = weather;
         this.tz = tz;
+        this.icon=icon;
 
     }
 

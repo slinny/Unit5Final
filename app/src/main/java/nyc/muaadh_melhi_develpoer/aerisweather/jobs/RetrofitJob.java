@@ -32,7 +32,7 @@ import retrofit2.Retrofit;
 
 public class RetrofitJob extends JobService {
     private static final String TAG = RetrofitJob.class.getSimpleName();
-    private List <AerisResponse> responseList = new ArrayList <>();
+    private List<AerisResponse> responseList = new ArrayList<>();
     GPSTracker gps;
     double latitude;
     double longitude;
@@ -76,27 +76,27 @@ public class RetrofitJob extends JobService {
         double lg = longitude;
         String location = lat + "," + lg;
         aerisService.getWeatherResponse(location, Common.CLIENT_ID, Common.CLIENT_SECRET)
-                .enqueue(new Callback <WeatherResponse>() {
+                .enqueue(new Callback<WeatherResponse>() {
                     @Override
-                    public void onResponse(Call <WeatherResponse> call, Response <WeatherResponse> response) {
+                    public void onResponse(Call<WeatherResponse> call, Response<WeatherResponse> response) {
                         Log.d("Retrofit call", "~~~~~~~~~~~onResponse:~~~~~~~~~~~~~ ");
                         responseList = response.body().getResponse();
                         Log.d("~~~~~~~~~~~~~~~~~~~~~~~", responseList.get(0).getProfile().getTz());
+                        insertData(responseList);
                         jobFinished(params, false);
                     }
 
                     @Override
-                    public void onFailure(Call <WeatherResponse> call, Throwable t) {
+                    public void onFailure(Call<WeatherResponse> call, Throwable t) {
                         Log.d("Retrofit call", "~~~~~~~~~~~onFailure:~~~~~~~~~~~~~ ");
                         t.printStackTrace();
                         jobFinished(params, true);
 
                     }
                 });
-
     }
 
-    public void insertData(List <AerisResponse> responseList) {
+    public void insertData(List<AerisResponse> responseList) {
         WeatherDatabase db = Room.databaseBuilder(getApplicationContext(), WeatherDatabase.class, "WeatherDataBase")
                 .allowMainThreadQueries().build();
         Log.d(TAG, "insertData: ");
@@ -117,10 +117,11 @@ public class RetrofitJob extends JobService {
             Long sunset = responseList.get(0).getPeriods().get(i).getSunset();
             String weather = responseList.get(0).getPeriods().get(i).getWeather();
             String tz = responseList.get(0).getProfile().getTz();
-            db.weatherDao().insertAll(new WeatherModel(dateTimeISO, _long, lat, weatherPrimary, maxTempF, minTempF, humidity, tempF, windSpeedMPH, sunrise, sunset, weather, tz));
-            Log.d("insertData: ", "called good~~~~~~~~~~");
-        }
-         Log.d("Db size:= ", "" + db.weatherDao().countWeather());
+            String icon=responseList.get(0).getPeriods().get(i).getIcon();
 
+            db.weatherDao().insertAll(new WeatherModel(dateTimeISO, _long, lat, weatherPrimary, maxTempF, minTempF, humidity, tempF, windSpeedMPH, sunrise, sunset, weather, tz,icon));
+            Log.d("insertData: ", "insert good~~~~~~~~~~"+i);
+        }
+        Log.d("size db= ", ""+db.weatherDao().countWeather());
     }
 }
