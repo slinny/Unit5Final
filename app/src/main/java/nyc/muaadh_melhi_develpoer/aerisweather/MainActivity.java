@@ -1,6 +1,7 @@
 package nyc.muaadh_melhi_develpoer.aerisweather;
 
 
+import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -19,11 +20,18 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import java.util.List;
+
 import nyc.muaadh_melhi_develpoer.aerisweather.background.MyJobScheduler;
+import nyc.muaadh_melhi_develpoer.aerisweather.database.WeatherDatabase;
+import nyc.muaadh_melhi_develpoer.aerisweather.database.WeatherModel;
+import nyc.muaadh_melhi_develpoer.aerisweather.model.AerisResponse;
+import nyc.muaadh_melhi_develpoer.aerisweather.utility.TimeFormat;
 
 
 public class MainActivity extends AppCompatActivity {
     private Snackbar snackbar;
+    private WeatherDatabase db;
 
     Toolbar img;
     RecyclerView recyclerView;
@@ -34,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
+        db = Room.databaseBuilder(getApplicationContext(), WeatherDatabase.class, "WeatherDataBase")
+                .allowMainThreadQueries().build();
 
         if (isNetworkAvailable()) {
             MyJobScheduler.start(getApplicationContext());
