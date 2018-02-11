@@ -18,10 +18,7 @@ public class TimeFormat {
     private static int hour;
 
     public static String getTime(String dateTimeISO) {
-        //  dateTimeISO = "2018-02-10T13:00:00-05:00";
-      //  SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX'");
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
-
         try {
             Date dt = formatter.parse(dateTimeISO);
             Calendar cal = Calendar.getInstance();
@@ -30,8 +27,6 @@ public class TimeFormat {
             int minute = cal.get(Calendar.MINUTE);
             int second = cal.get(Calendar.SECOND);
         } catch (ParseException e) {
-            // This can happen if you are trying to parse an invalid date, e.g., 25:19:12.
-            // Here, you should log the error and decide what to do next
             e.printStackTrace();
         }
         formatedHour = String.valueOf(hour);

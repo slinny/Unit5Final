@@ -33,10 +33,7 @@ public class AerisNotification extends IntentService {
         Intent weatherIntent = new Intent(this, MainActivity.class);
         int requestID = (int) System.currentTimeMillis();
         int flags = PendingIntent.FLAG_CANCEL_CURRENT;
-//        TaskStackBuilder taskStackBuilder = TaskStackBuilder.create(this);
-//        taskStackBuilder.addParentStack(MainActivity.class);
-//        taskStackBuilder.addNextIntent(intent);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, requestID, weatherIntent, flags);
+       PendingIntent pendingIntent = PendingIntent.getActivity(this, requestID, weatherIntent, flags);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL)
                 .setSmallIcon(R.drawable.noticication_icon)
                 .setContentTitle("Weather AerisNotification")
