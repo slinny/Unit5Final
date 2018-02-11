@@ -19,29 +19,30 @@ import nyc.muaadh_melhi_develpoer.aerisweather.utility.TimeFormat;
 
 class AerisViewHolder extends RecyclerView.ViewHolder {
 
-
     TextView hour;
     TextView tempF;
     ImageView rvIcon;
 
     public AerisViewHolder(View itemView) {
         super(itemView);
-
-
         hour = (TextView) itemView.findViewById(R.id.hour);
         tempF = (TextView) itemView.findViewById(R.id.hourlyTemp);
         rvIcon = (ImageView) itemView.findViewById(R.id.rvIcon);
     }
 
     public void onBind(WeatherModel response) {
-        String date = response.getDateTimeISO();
-        String hours = TimeFormat.getTime(date);
-        hour.setText(hours);
-        tempF.setText(response.getTempF());
+        String hr = response.getDateTimeISO();
+        if (getAdapterPosition() == 0) {
+            hr = "Now";
+        } else if (Integer.parseInt(hr) == 0 && getAdapterPosition() != 0) {
+            hr = "" + 12;
+        }
+
+        hour.setText(hr);
+        tempF.setText("" + response.getTempF());
         String icon = response.getIcon();
         Drawable drawable = getIcon(itemView.getContext(), icon);
         rvIcon.setBackground(drawable);
-
     }
 
     private Drawable getIcon(Context context, String icon) {
@@ -52,6 +53,5 @@ class AerisViewHolder extends RecyclerView.ViewHolder {
         int imageResource = resources.getIdentifier(uri, null, context.getPackageName());
         drawable = resources.getDrawable(imageResource, null);
         return drawable;
-
     }
 }

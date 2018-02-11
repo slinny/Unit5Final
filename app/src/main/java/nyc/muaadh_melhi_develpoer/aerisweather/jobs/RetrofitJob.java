@@ -40,9 +40,6 @@ public class RetrofitJob extends JobService {
 
     @Override
     public boolean onStartJob(JobParameters params) {
-        /**
-         * Create Retorfit call
-         */
         AerisService aerisService = Common.getForecast();
         loadForecast(aerisService, params);
         intent = new Intent(getApplicationContext(), AerisNotification.class);
@@ -117,11 +114,10 @@ public class RetrofitJob extends JobService {
             Long sunset = responseList.get(0).getPeriods().get(i).getSunset();
             String weather = responseList.get(0).getPeriods().get(i).getWeather();
             String tz = responseList.get(0).getProfile().getTz();
-            String icon=responseList.get(0).getPeriods().get(i).getIcon();
-
-            db.weatherDao().insertAll(new WeatherModel(dateTimeISO, _long, lat, weatherPrimary, maxTempF, minTempF, humidity, tempF, windSpeedMPH, sunrise, sunset, weather, tz,icon));
-            Log.d("insertData: ", "insert good~~~~~~~~~~"+i);
+            String icon = responseList.get(0).getPeriods().get(i).getIcon();
+            db.weatherDao().insertAll(new WeatherModel(dateTimeISO, _long, lat, weatherPrimary, maxTempF, minTempF, humidity, tempF, windSpeedMPH, sunrise, sunset, weather, tz, icon));
+            Log.d("insertData: ", "insert good~~~~~~~~~~" + i);
         }
-        Log.d("size db= ", ""+db.weatherDao().countWeather());
+        Log.d("size db= ", "" + db.weatherDao().countWeather());
     }
 }
