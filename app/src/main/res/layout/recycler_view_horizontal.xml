@@ -11,21 +11,22 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/sunday"
+            android:id="@+id/hour"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="here13" />
 
-        <TextView
+        <ImageView
+            android:id="@+id/rvIcon"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="here12"/>
+            />
         <TextView
+            android:id="@+id/hourlyTemp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="here12"/>
+            android:layout_weight="1" />
     </LinearLayout>
 </LinearLayout>
